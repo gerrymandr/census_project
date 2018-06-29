@@ -1,0 +1,97 @@
+Version: 1.0
+
+RestoreWorkspace: Default
+SaveWorkspace: Default
+AlwaysSaveHistory: Default
+
+EnableCodeIndexing: Yes
+UseSpacesForTab: Yes
+NumSpacesForTab: 2
+Encoding: UTF-8
+
+RnwWeave: Sweave
+LaTeX: pdfLaTeX
+
+---
+title: "Censu_SNAP"
+author: "Jake"
+date: "6/28/2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+```{r}
+## Read data to csv
+data = read.csv(file.choose(), header = TRUE)
+#data <- data[-55,]
+
+
+```
+
+
+```{r}
+xvar = data$Persons
+xlabel = "Persons Receiving SNAP Benefits"
+yvar = data$Tpayment
+ylabel = "Total SNAP Issuance"
+title = "State SNAP Issuance by Snap Enrollment"
+#cor: 0.9961
+#R^2: 0.9921
+
+fit = lm(yvar~xvar)
+plot(xvar,yvar, xlab = xlabel, ylab = ylabel, main = title)
+abline(fit)
+
+cor(xvar, yvar, use="complete.obs")
+fit
+summary(fit)
+
+
+
+scatter.smooth(residuals(fit)~predict(fit))
+```
+
+```{r}
+scatter.smooth(residuals(fit)~predict(fit))
+```
+
+```{r}
+xvar = data$Households
+xlabel = "# Households"
+yvar = data$Tpayment
+ylabel = "Total SNAP Issuance"
+#cor: 
+#R^2: 
+
+fit = lm(yvar~xvar)
+plot(xvar,yvar, xlab = xlabel, ylab = ylabel)
+abline(fit)
+
+cor(xvar, yvar, use="complete.obs")
+fit
+summary(fit)
+```
+```{r}
+scatter.smooth(residuals(fit)~predict(fit))
+```
+
+```{r}
+xvar = data$Tpop
+xlabel = "Population"
+yvar = data$Tpayment
+ylabel = "SNAP Issuance"
+title = "State SNAP Issuance by Population"
+
+fit = lm(yvar~xvar)
+plot(xvar,yvar, xlab = xlabel, ylab = ylabel, main=title)
+abline(fit)
+
+cor(xvar, yvar, use="complete.obs")
+fit
+summary(fit)
+```
+
