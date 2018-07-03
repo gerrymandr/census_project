@@ -30,15 +30,15 @@ library(plyr)
 
 
 #precinct shape file
-prec_shp <- readOGR(dsn = "C:/Users/ckell/Dropbox/Travis County - MGGG/Shapefiles/SplitPrecincts", layer = "SplitPrecincts20161108")
+prec_shp <- readOGR(dsn = "Shapefiles/SplitPrecincts", layer = "SplitPrecincts20161108")
 #plot(prec_shp)
 
 #voterfile shape file
-v_file <- read_excel("C:/Users/ckell/Dropbox/Travis County - MGGG/Voter Registration File/VRFile-A.xlsx")#, range = "C1:C388888")
-v_file2 <- read_excel("C:/Users/ckell/Dropbox/Travis County - MGGG/Voter Registration File/VRFile-B.xlsx", colnames = F)#, range = "C1:328518")
+v_file <- read_excel("VRFile-A.xlsx")#, range = "C1:C388888")
+v_file2 <- read_excel("VRFile-B.xlsx", colnames = F)#, range = "C1:328518")
 
 #publicly available shapefile
-prec_shp2 <- readOGR(dsn = "C:/Users/ckell/Desktop/Summer 2018/MGGG/Census/VR_ElectionPrecinctShapeFile", layer = "TravisCountyElectionPrecincts")
+prec_shp2 <- readOGR(dsn = "VR_ElectionPrecinctShapeFile", layer = "TravisCountyElectionPrecincts")
 
 #Id's for precinct shape file
 prec_shp_id <- prec_shp2@data$PCTCODE
@@ -63,7 +63,7 @@ v_file$Address <- paste2(v_file[,c("BLKNUM", "STRDIR", "STRNAM", "STRTYP",
                         "RSCITY", "RSTATE", "RZIPCD")], sep = " ", handle.na = F)
 v_file$Address <- gsub("NA "," ",v_file$Address)
 
-write.csv(v_file, file = "C:/Users/ckell/Desktop/Summer 2018/MGGG/Census/v_file.csv")
+write.csv(v_file, file = "v_file.csv")
 
 #osm_geocode(c("1600 Pennsylvania Ave, Washington, DC.",
 #              "1600 Amphitheatre Parkway, Mountain View, CA",
