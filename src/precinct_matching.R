@@ -100,3 +100,4 @@ vote_by_prec <- ggplot()+
         axis.text.y=element_blank(),
         axis.ticks.y=element_blank())
 vote_by_prec
+
